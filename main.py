@@ -44,11 +44,11 @@ def run_and_log(provider):
     start_time = time.time()
     session = load_model(args.model_path, provider)
     loading_time = time.time() - start_time
-    print(f"Model loading time ({provider}): {loading_time:.4f} seconds")
+    # print(f"Model loading time ({provider}): {loading_time:.4f} seconds")
 
     # Run inference and measure inference time
     inference_time, ort_output = run_inference(session, args.runs)
-    print(f"Inference time ({provider}): {inference_time:.4f} seconds", f"Runs: {args.runs}")
+    # print(f"Inference time ({provider}): {inference_time:.4f} seconds", f"Runs: {args.runs}")
 
     # Log benchmark data
     benchmark_results.append(log_bench_data(args, id, loading_time, inference_time, provider))
@@ -60,9 +60,9 @@ if args.provider == 'all':
 else:
     run_and_log(args.provider)
 
-# Save all benchmark data to a single JSON file
-output_filename = f"{id}.json"
-with open(output_filename, 'w') as f:
-    json.dump(benchmark_results, f, indent=4)
+# # Save all benchmark data to a single JSON file
+# output_filename = f"{id}.json"
+# with open(output_filename, 'w') as f:
+#     json.dump(benchmark_results, f, indent=4)
 
-print(f"Benchmark data written to {output_filename}")
+print(f"{benchmark_results}")

@@ -1,6 +1,4 @@
-import numpy as np
 import onnxruntime as ort
-import time
 
 
 def load_model(model_path, provider):
